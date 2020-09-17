@@ -194,7 +194,9 @@
 - (void)updateVersion{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    DebugLog(@"%@",_trackViewUrl);
+    #ifdef DEBUG
+    NSLog(@"%@",_trackViewUrl);
+    #endif
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_trackViewUrl]];
 #pragma clang diagnostic pop

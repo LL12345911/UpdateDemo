@@ -18,8 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [ATVersion checkNewVersion1];
-    [ATVersion checkNewVersionWithAppId:@"1237590520"];
+    [ATVersion checkNewVersion];
+    //[ATVersion checkNewVersionWithAppId:@"1237590520"];
     
     
 }

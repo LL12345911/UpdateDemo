@@ -68,11 +68,18 @@
             [ATUpdateAlert showUpdateAlert:appInfo];
         }else{
             if (flag == 1) {
-                [HUDTools showText:@"已是最新版本!"];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"已是最新版本!" preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:([UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }])];
+                [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
             }
         }
-        DebugLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 version = %@", appInfo.version);
-        DebugLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 检测更新----有没有新版本 %@", isNewVersion ? @"YES":@"NO");
+        #ifdef DEBUG
+        NSLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 version = %@", appInfo.version);
+        NSLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 检测更新----有没有新版本 %@", isNewVersion ? @"YES":@"NO");
+        #endif
+        
     }];
 //
 //    [self versionRequest:^(ATAppInfo *appInfo) {
@@ -84,9 +91,24 @@
 //         [ATUpdateAlert showUpdateAlert:appInfo];
 //    }];
 }
+
+-(UIWindow*)keyWindow{
+    UIWindow *foundWindow = nil;
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    for (UIWindow *window in windows) {
+        if (window.isKeyWindow) {
+            foundWindow = window;
+            break;
+        }
+    }
+    return foundWindow;
+}
+
+
 //获取当前控制器
 - (UIViewController *)currentViewController {
-    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController* vc = [self keyWindow].rootViewController;
+    //UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     while (1) {
         if ([vc isKindOfClass:[UITabBarController class]]) {
             vc = ((UITabBarController*)vc).selectedViewController;
@@ -111,7 +133,8 @@
     if ([delegate respondsToSelector:@selector(window)]) {
         window = [delegate performSelector:@selector(window)];
     } else {
-        window = [[UIApplication sharedApplication] keyWindow];
+        //window = [[UIApplication sharedApplication] keyWindow];
+        window = [self keyWindow];
     }
     return window;
 }
@@ -133,7 +156,10 @@
         NSInteger resultCount = [responseDict[@"resultCount"] integerValue];
         if(resultCount==1){
             NSArray *resultArray = responseDict[@"results"];
-            DebugLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 \n%@",resultArray);
+            #ifdef DEBUG
+            NSLog(@"🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔 \n%@",resultArray);
+            #endif
+            
             NSDictionary *result = resultArray.firstObject;
             ATAppInfo *appInfo = [[ATAppInfo alloc] initWithResult:result];
             NSString *version = appInfo.version;
