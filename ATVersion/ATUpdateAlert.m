@@ -9,6 +9,7 @@
 #import "ATUpdateAlert.h"
 #import "ATUpdateAlertConst.h"
 #import "ATAppInfo.h"
+#import "ATVersion.h"
 
 #define DEFAULT_MAX_HEIGHT SCREEN1_HEIGHT/3*2
 
@@ -97,15 +98,28 @@
     return self;
 }
 
-- (UIImage *)getImageFromImageNamed:(NSString *)imageName{
-    /// 静态库 url 的获取
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Update" withExtension:@"bundle"];
-    if (!url) {
-        /// 动态库 url 的获取
-        url = [[NSBundle bundleForClass:[self class]] URLForResource:@"Update" withExtension:@"bundle"];
+- (NSBundle *)getImageBundle {
+#ifdef SWIFT_PACKAGE
+    NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    NSBundle *bundle = [NSBundle bundleForClass:[ATVersion class]];
+#endif
+    NSURL *url = [bundle URLForResource:@"ATVersion" withExtension:@"bundle"];
+    bundle = [NSBundle bundleWithURL:url];
+    return bundle;
+}
+
+
+- (UIImage *)imageNamedFromMyBundle:(NSString *)name {
+    NSBundle *imageBundle = [self getImageBundle];
+    name = [name stringByAppendingString:@"@2x"];
+    NSString *imagePath = [imageBundle pathForResource:name ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if (!image) {
+        // 兼容业务方自己设置图片的方式
+        name = [name stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+        image = [UIImage imageNamed:name];
     }
-    NSBundle *bundle = [NSBundle bundleWithURL:url];
-    UIImage *image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
     return image;
 }
 

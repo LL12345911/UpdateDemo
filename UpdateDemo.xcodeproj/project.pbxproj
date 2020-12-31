@@ -16,7 +16,7 @@
 		415770B82512E9B600A37FC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 415770B72512E9B600A37FC7 /* main.m */; };
 		415770C22512E9B700A37FC7 /* UpdateDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 415770C12512E9B700A37FC7 /* UpdateDemoTests.m */; };
 		415770CD2512E9B700A37FC7 /* UpdateDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 415770CC2512E9B700A37FC7 /* UpdateDemoUITests.m */; };
-		415771A92512EF9C00A37FC7 /* Update.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4157719F2512EF9C00A37FC7 /* Update.bundle */; };
+		415771A92512EF9C00A37FC7 /* ATVersion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4157719F2512EF9C00A37FC7 /* ATVersion.bundle */; };
 		415771AA2512EF9C00A37FC7 /* ATVersionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 415771A22512EF9C00A37FC7 /* ATVersionRequest.m */; };
 		415771AB2512EF9C00A37FC7 /* ATUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 415771A42512EF9C00A37FC7 /* ATUpdateAlertConst.m */; };
 		415771AC2512EF9C00A37FC7 /* ATAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 415771A52512EF9C00A37FC7 /* ATAppInfo.m */; };
@@ -61,7 +61,7 @@
 		415770CC2512E9B700A37FC7 /* UpdateDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateDemoUITests.m; sourceTree = "<group>"; };
 		415770CE2512E9B700A37FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4157719E2512EF9C00A37FC7 /* ATUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATUpdateAlertConst.h; sourceTree = "<group>"; };
-		4157719F2512EF9C00A37FC7 /* Update.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Update.bundle; sourceTree = "<group>"; };
+		4157719F2512EF9C00A37FC7 /* ATVersion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATVersion.bundle; sourceTree = "<group>"; };
 		415771A02512EF9C00A37FC7 /* ATAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAppInfo.h; sourceTree = "<group>"; };
 		415771A12512EF9C00A37FC7 /* ATUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATUpdateAlert.h; sourceTree = "<group>"; };
 		415771A22512EF9C00A37FC7 /* ATVersionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATVersionRequest.m; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		415770992512E9B400A37FC7 = {
 			isa = PBXGroup;
 			children = (
-				4157719D2512EF9C00A37FC7 /* UpdateLib */,
+				4157719D2512EF9C00A37FC7 /* ATVersion */,
 				415770A42512E9B400A37FC7 /* UpdateDemo */,
 				415770C02512E9B700A37FC7 /* UpdateDemoTests */,
 				415770CB2512E9B700A37FC7 /* UpdateDemoUITests */,
@@ -155,7 +155,7 @@
 			path = UpdateDemoUITests;
 			sourceTree = "<group>";
 		};
-		4157719D2512EF9C00A37FC7 /* UpdateLib */ = {
+		4157719D2512EF9C00A37FC7 /* ATVersion */ = {
 			isa = PBXGroup;
 			children = (
 				415771A02512EF9C00A37FC7 /* ATAppInfo.h */,
@@ -168,9 +168,9 @@
 				415771A62512EF9C00A37FC7 /* ATVersion.m */,
 				415771A82512EF9C00A37FC7 /* ATVersionRequest.h */,
 				415771A22512EF9C00A37FC7 /* ATVersionRequest.m */,
-				4157719F2512EF9C00A37FC7 /* Update.bundle */,
+				4157719F2512EF9C00A37FC7 /* ATVersion.bundle */,
 			);
-			path = UpdateLib;
+			path = ATVersion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				415771A92512EF9C00A37FC7 /* Update.bundle in Resources */,
+				415771A92512EF9C00A37FC7 /* ATVersion.bundle in Resources */,
 				415770B52512E9B600A37FC7 /* LaunchScreen.storyboard in Resources */,
 				415770B22512E9B600A37FC7 /* Assets.xcassets in Resources */,
 				415770B02512E9B400A37FC7 /* Main.storyboard in Resources */,
