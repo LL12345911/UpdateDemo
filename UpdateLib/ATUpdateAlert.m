@@ -97,6 +97,18 @@
     return self;
 }
 
+- (UIImage *)getImageFromImageNamed:(NSString *)imageName{
+    /// 静态库 url 的获取
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Update" withExtension:@"bundle"];
+    if (!url) {
+        /// 动态库 url 的获取
+        url = [[NSBundle bundleForClass:[self class]] URLForResource:@"Update" withExtension:@"bundle"];
+    }
+    NSBundle *bundle = [NSBundle bundleWithURL:url];
+    UIImage *image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+    return image;
+}
+
 - (void)_setupUI{
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.3/1.0];
@@ -138,7 +150,8 @@
     
     //20+166+10+28+10+descHeight+20+40+20 = 314+descHeight 内部元素高度计算bgView高度
     UIImageView *updateIcon = [[UIImageView alloc]initWithFrame:CGRectMake((updateView.frame.size.width - Ratio(178))/2, Ratio(20), Ratio(178), Ratio(166))];
-    updateIcon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/VersionUpdate_Icon",path]];
+    // updateIcon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/VersionUpdate_Icon",path]];
+    updateIcon.image = [self getImageFromImageNamed:@"VersionUpdate_Icon"];
    // updateIcon.image = [UIImage imageNamed:@"VersionUpdate_Icon"];
     [updateView addSubview:updateIcon];
     
@@ -182,7 +195,9 @@
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancelButton.center = CGPointMake(CGRectGetMaxX(updateView.frame), CGRectGetMinY(updateView.frame));
     cancelButton.bounds = CGRectMake(0, 0, Ratio(36), Ratio(36));
-    [cancelButton setImage:[[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/VersionUpdate_Cancel",path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+   // [cancelButton setImage:[[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/VersionUpdate_Cancel",path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    
+    [cancelButton setImage:[[self getImageFromImageNamed:@"VersionUpdate_Cancel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:cancelButton];
     
