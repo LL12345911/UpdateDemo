@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     s.source       = {:git => 'https://github.com/LL12345911/UpdateLib.git', :tag => s.version}
     s.social_media_url = 'https://github.com/LL12345911/UpdateLib'
     s.source_files = 'ATVersion/**/*.{h,m}'
-    s.resource_bundles    = { 'ATVersion' => 'ATVersion/Update.bundle' }
+    s.resource_bundles    = { 'ATVersion' => 'ATVersion/ATVersion.bundle' }
     s.requires_arc = true
     s.ios.frameworks = 'UIKit','Foundation'
     s.ios.deployment_target = '9.0'
